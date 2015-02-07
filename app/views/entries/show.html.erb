@@ -1,13 +1,33 @@
-<h2><%= @entry.title %></h2>
-<p><%= @entry.content %></p>
-<p><%= @entry.created_at.localtime.strftime("%b %d, %Y - %l:%M %P") %></p>
-<p><%= @entry.id %></p>
+<div class="jumbotron">
+  <div class="container">
+    <nav>
+      <button class="btn btn-default home"><%= link_to 'Home', entries_path %></button>
+      <div class="login">
+        <% if @user %>
+          <form method="POST" action="/session">
+            <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+            <input name="_method" value="DELETE" type="hidden">
+            <button class="btn btn-default">Logout</button>
+          </form>
+        <% else %>
+          <a href="/login" class="btn btn-default">Login</a>
+        <% end %>
+      </div>
+    </nav>
+    <h1> <%= @entry.title %> </h1>
+  </div>
+</div>
 
-<% if @user && @user.admin_status == "t" %>
-  <%= link_to 'Edit', edit_entry_path(@entry) %>
-  <br>
-  <%= link_to 'Delete', @entry, method: :delete %>
-  <br>
-<% end %>
-
-<%= link_to 'Home', entries_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <% if @user && @user.admin_status == "t" %>
+      <button class="btn btn-primary"><%= link_to 'Edit', edit_entry_path(@entry) %></button>
+      <button class="btn btn-primary"><%= link_to 'Delete', @entry, method: :delete %></button>
+      <% end %>
+    </div>
+    <div class="col-sm-8">
+      <p class="timestamp"><%= @entry.created_at.localtime.strftime("%b %d, %Y") %></p>
+      <p><%= @entry.content %></p>
+    </div>
+</div>

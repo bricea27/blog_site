@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   root 'entries#index'
   resources :entries
-  
+
   get '/login' => 'session#new'
   post '/session' => 'session#create'
 
