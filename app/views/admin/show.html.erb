@@ -1,0 +1,15 @@
+<h2> Hello, <%= @user.username %> </h2>
+<p> Status: <%= @user.admin_status %></p>
+<%= link_to 'Create Entry', new_entry_path %>
+<br>
+
+<% @entries.reverse_each do |entry| %>
+ <h2><%= link_to entry.title, entry %></h2>
+ <p><%= entry.created_at %></p>
+<% end %>
+
+<form method="POST" action="/session">
+    <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+    <input name="_method" value="DELETE" type="hidden">
+    <button>Logout</button>
+</form>

@@ -1,0 +1,17 @@
+<h1> Blog </h1>
+
+<% @entries.reverse_each do |entry| %>
+ <h2><%= link_to entry.title, entry %></h2>
+ <p><%= entry.content[0, 200] %></p>
+ <p><%= entry.created_at.localtime.strftime("%b %d, %Y - %l:%M %P") %></p>
+<% end %>
+
+<% if @user %>
+  <form method="POST" action="/session">
+    <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+    <input name="_method" value="DELETE" type="hidden">
+    <button>Logout</button>
+  </form>
+<% else %>
+  <a href="/login">Login</a>
+<% end %>

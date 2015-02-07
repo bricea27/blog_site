@@ -1,0 +1,11 @@
+<%= form_for @entry, url: {action: 'update'} do |f| %>
+<h2><%= f.label :title %></h2>
+<%= f.text_field :title, value: @entry.title %>
+
+<h2><%= f.label :content %></h2>
+<%= f.text_area :content, value: @entry.content %>
+<br>
+
+<%= f.submit %>
+<% end %>
+<%= link_to 'cancel', @entry %>
