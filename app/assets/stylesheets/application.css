@@ -30,6 +30,14 @@ h2 a {
   color: #222222;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 
 .container {
   padding: 40px 0;
@@ -39,6 +47,11 @@ h2 a {
   text-align: center;
 }
 
+/* .home {
+  background: url('http://i.giphy.com/hQT59ncku4wUM.gif') no-repeat center center;
+  background-size: cover;
+} */
+
 .timestamp {
   font-style: italic;
   color: #bdc3c7;
@@ -47,17 +60,45 @@ h2 a {
 nav {
   position: absolute;
   top: 20px;
-  left: 20px;
+  left: 10px;
 }
 
 nav button {
   display: inline-block;
 }
 
-.login {
-  display: inline-block;
-}
-
 .home-entries {
   padding: 0 40px 40px 40px;
+}
+
+.btn {
+  background: #fff;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+p {
+  font-weight: 300;
+}
+
+.admin-login input {
+  display: block;
+}
+
+.admin-login form {
+  text-align: center;
+}
+
+.admin-entries {
+  text-align: center;
+}
+
+.logout {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.logout form {
+  display: inline-block;
 }

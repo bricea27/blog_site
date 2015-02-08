@@ -1,33 +1,30 @@
 <div class="jumbotron">
   <div class="container">
     <nav>
-      <button class="btn btn-default home"><%= link_to 'Home', entries_path %></button>
-      <div class="login">
-        <% if @user %>
-          <form method="POST" action="/session">
-            <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
-            <input name="_method" value="DELETE" type="hidden">
-            <button class="btn btn-default">Logout</button>
-          </form>
-        <% else %>
-          <a href="/login" class="btn btn-default">Login</a>
-        <% end %>
-      </div>
+      <a href="/"><i class="fa fa-home fa-2x"></i></a>
     </nav>
+    <div class="logout">
+      <% if @user %>
+        <a href="/admin" class="btn btn-default">Admin</a>
+        <form method="POST" action="/session">
+          <input name="authenticity_token" value="<%= form_authenticity_token() %>" type="hidden">
+          <input name="_method" value="DELETE" type="hidden">
+          <button class="btn btn-default">Logout</button>
+        </form>
+      <% end %>
+    </div>
     <h1> <%= @entry.title %> </h1>
+    <p class="timestamp"><%= @entry.created_at.localtime.strftime("%b %d, %Y") %></p>
+    <% if @user && @user.admin_status == "t" %>
+    <button class="btn btn-default"><%= link_to 'Edit', edit_entry_path(@entry) %></button>
+    <button class="btn btn-default"><%= link_to 'Delete', @entry, method: :delete %></button>
+    <% end %>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col-sm-2">
-      <% if @user && @user.admin_status == "t" %>
-      <button class="btn btn-primary"><%= link_to 'Edit', edit_entry_path(@entry) %></button>
-      <button class="btn btn-primary"><%= link_to 'Delete', @entry, method: :delete %></button>
-      <% end %>
-    </div>
-    <div class="col-sm-8">
-      <p class="timestamp"><%= @entry.created_at.localtime.strftime("%b %d, %Y") %></p>
+    <div class="col-sm-8 col-sm-offset-2">
       <p><%= @entry.content %></p>
     </div>
 </div>
